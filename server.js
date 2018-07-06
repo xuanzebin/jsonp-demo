@@ -22,18 +22,23 @@ var server = http.createServer(function(request, response){
   console.log('方方说：含查询字符串的路径\n' + pathWithQuery)
 
   if(path === '/'){
+    let string=fs.readFileSync('./index.html','utf8')
+    let amount=fs.readFileSync('./db','utf8')
+    string=string.replace('&&&amount&&&',amount)
     response.statusCode = 200
     response.setHeader('Content-Type', 'text/html;charset=utf-8')
-    response.write(fs.readFileSync('./index.html'))
+    response.write(string)
     response.end()
   } else if (path === '/pay'){
+    let amount=fs.readFileSync('./db','utf8')
+    amount--
+    fs.writeFileSync('./db',amount) 
     response.statusCode = 200
     response.setHeader('Content-Type', 'application/javascript;charset=utf-8')
     response.write(`
       ${query.callback}.call(undefined,'success')
-      alert(1)
     `)
-
+    response.end()
   } else {
     response.statusCode = 404
     response.setHeader('Content-Type', 'text/html;charset=utf-8')

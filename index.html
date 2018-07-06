@@ -8,16 +8,16 @@
     <title>我是frank</title>
 </head>
 <body>
-    <p style="color:red;">您的余额是<span id=amount>100</span></p>
+    <p style="color:red;">您的余额是<span id=amount>&&&amount&&&</span></p>
     <button id=button>付款</button>
     <script>
         $('#button').on('click',function(){
             $.ajax({
-                url:"http://127.0.0.1:8888/pay",
+                url:"http://jack.com:8002/pay",
                 dataType:"jsonp",
                 success:function(response){
                     if (response ==='success'){
-                        amonut.innerText--
+                        amount.innerText--
                     }
                 }
             })
