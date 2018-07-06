@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>我是frank</title>
+</head>
+<body>
+    <p style="color:red;">您的余额是<span id=amount>100</span></p>
+    <button id=button>付款</button>
+    <script>
+        $('#button').on('click',function(){
+            $.ajax({
+                url:"http://127.0.0.1:8888/pay",
+                dataType:"jsonp",
+                success:function(response){
+                    if (response ==='success'){
+                        amonut.innerText--
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+</html>
